@@ -1,0 +1,114 @@
+/* style.css
+ * Assignment 3: Shop (Server)
+ *
+ * Revision History 
+ *     Yi Phyo Hong, 2020.03.30: Created
+ */
+
+body{
+    width: 600px;
+    margin: 20px auto;
+    display: block;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    background-color: #B9D9EA;
+}
+
+.copyright{
+    width: 600px;
+    text-align: center;
+    padding: 10px 0;
+    color: #E7F2F8;
+    background-color: #0075B5;
+    border: 2px solid #0075B5;
+}
+
+.clear{
+    clear: both;
+}
+
+.title{
+    width: 600px;
+    margin: 0;
+    font-size: 35px;
+    text-align: center;
+    padding: 5px 0px;
+    color: #E7F2F8;
+    background-color: #0075B5;
+    border: 2px solid #0075B5;
+}
+
+form{
+    width: 500px;
+    margin: 20px 30px;
+    padding: 20px 20px;
+    border: 2px solid #5CA7CF;
+}
+
+label{
+    float: left;
+    margin: 5px 5px 5px 50px;
+    width: 180px;
+    font-weight: bold;
+}
+
+input, select{
+    float: left;
+    margin: 5px;
+    width: 200px;
+    background-color: #E7F2F8;
+}
+
+input[type="submit"]{
+    margin: 20px 150px 10px;
+    width: 200px;
+    height: 35px;
+    font-size: 22px;
+    color: #E7F2F8;
+    background-color: #0075B5;
+    border: 2px solid #0075B5;
+}
+
+#message{
+    width: 300px;
+    color: red;
+}
+
+#invoiceTitle{
+    width: 400px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+}
+
+#invoice{
+    float: left;
+    width: 400px;
+    margin-left: 80px;
+    margin-bottom: 20px;
+    background-color: #E7F2F8;
+    padding: 20px;
+    border: 2px solid #5CA7CF;
+}
+
+#item{
+    float: left;
+    margin: 5px 0;
+    width: 190px;
+}
+
+#colon{
+    float: left;
+    margin: 5px 0;
+}
+
+#price{
+    float: right;
+    width: 190px;
+    margin: 5px 0;
+    text-align: right;
+    white-space: pre-line;
+}
