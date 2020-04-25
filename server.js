@@ -155,7 +155,7 @@ myApp.post('/', function(req, res) {
     res.render('shop', invoiceData);
 });
 // start the server and listen at aport
-myApp.listen(8080);
+myApp.listen(80);
 
 // tell everything waw ok
-console.log('website at port 8080 was running.')
+console.log('website at port 80 was running.')
