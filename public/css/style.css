@@ -1,26 +1,24 @@
 /* style.css
- * Assignment 3: Shop (Server)
+ * Assignment 4: Shop (Mongo DB)
  *
  * Revision History 
- *     Yi Phyo Hong, 2020.03.30: Created
+ *     Yi Phyo Hong, 2020.04.12: Created
  */
 
 body{
-    width: 600px;
     margin: 20px auto;
     display: block;
     font-family: Roboto, Arial, Helvetica, sans-serif;
     font-size: 18px;
-    background-color: #B9D9EA;
+    background-color: #F7F4F1;
 }
 
 .copyright{
-    width: 600px;
     text-align: center;
     padding: 10px 0;
-    color: #E7F2F8;
-    background-color: #0075B5;
-    border: 2px solid #0075B5;
+    color: #F7F4F1;
+    background-color: #BC0A0F;
+    border: 2px solid #BC0A0F;
 }
 
 .clear{
@@ -28,21 +26,20 @@ body{
 }
 
 .title{
-    width: 600px;
     margin: 0;
     font-size: 35px;
     text-align: center;
     padding: 5px 0px;
-    color: #E7F2F8;
-    background-color: #0075B5;
-    border: 2px solid #0075B5;
+    color: #F7F4F1;
+    background-color: #BC0A0F;
+    border: 2px solid #BC0A0F;
 }
 
 form{
     width: 500px;
-    margin: 20px 30px;
+    margin: 20px auto;
     padding: 20px 20px;
-    border: 2px solid #5CA7CF;
+    border: 2px solid #0AABA7;
 }
 
 label{
@@ -56,7 +53,7 @@ input, select{
     float: left;
     margin: 5px;
     width: 200px;
-    background-color: #E7F2F8;
+    background-color: #F7F4F1;
 }
 
 input[type="submit"]{
@@ -64,17 +61,27 @@ input[type="submit"]{
     width: 200px;
     height: 35px;
     font-size: 22px;
-    color: #E7F2F8;
-    background-color: #0075B5;
-    border: 2px solid #0075B5;
+    color: #F7F4F1;
+    background-color: #0AABA7;
+    border: 2px solid #0AABA7;
 }
 
 #message{
-    width: 300px;
+    width: 500px;
     color: red;
 }
 
+#invoice{
+    width: 400px;
+    height: 500px;
+    margin: 20px auto;
+    background-color: #F7F4F1;
+    padding: 20px;
+    border: 2px solid #0AABA7;
+}
+
 #invoiceTitle{
+    float: left;
     width: 400px;
     margin-top: 0px;
     margin-bottom: 20px;
@@ -82,16 +89,6 @@ input[type="submit"]{
     font-weight: bold;
     text-align: center;
     text-decoration: underline;
-}
-
-#invoice{
-    float: left;
-    width: 400px;
-    margin-left: 80px;
-    margin-bottom: 20px;
-    background-color: #E7F2F8;
-    padding: 20px;
-    border: 2px solid #5CA7CF;
 }
 
 #item{
@@ -111,4 +108,53 @@ input[type="submit"]{
     margin: 5px 0;
     text-align: right;
     white-space: pre-line;
+}
+
+.menu{
+    background-color: #033432;
+    color: #F7F4F1;
+}
+
+.menu ul{
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+}
+
+.menu ul li{
+    display: inline-block;
+    width: 150px;
+}
+
+.menu ul li:hover{
+    background-color: #0AABA7;
+}
+.menu ul li a{
+    color: #F7F4F1;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 0;
+    display: block;
+}
+
+.tableDiv{
+    overflow-x:auto;
+}
+
+table{
+    border: 2px solid #0AABA7;
+    border-collapse: collapse;
+    margin: 20px;
+}
+
+td, th{
+    border: 2px solid #0AABA7;
+    background-color: #F7F4F1;
+    padding: 5px 4px;
+}
+
+th{
+    color: #F7F4F1;
+    background-color: #0AABA7;
+    font-weight: bold;
 }

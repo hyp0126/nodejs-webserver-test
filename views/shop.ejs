@@ -1,33 +1,20 @@
 <!-- shop.ejs
-    Assignment 3: Shop (Server)
+    Assignment 4: Shop (Mongo DB)
 
     Revision History 
-        Yi Phyo Hong, 2020.03.30: Created
+        Yi Phyo Hong, 2020.04.12: Created
 -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="css/normalize.css" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Teko&display=swap" rel="stylesheet">
-    <title>Assignment 1</title>
-    <script src="js/shop.js"></script>
-</head>
+<%- include('layouts/header') -%>
 <body onload="onLoad();">
-    <header>
-        <p class="title">Computer Shop</p>
-    </header>
+    <%- include('layouts/nav') -%>
 
     <main>
         <form onsubmit="return processForm();" action="" method="post">
             <label for="name">Name*</label>
             <input type="text" id="name" name="name">
             <label for="email">Email*</label>
-            <input type="text" id="email" name="email">
+            <input type="text" id="email" name="email" placeholder="email@address.com">
             <label for="phone">Phone*</label>
             <input type="text" id="phone" name="phone" placeholder="xxx-xxx-xxxx">
             <label for="address">Address*</label>
@@ -50,39 +37,20 @@
             </select>
             <div class="clear"></div>
             <input type="submit" name="submit" value="Place Order">
-            <p id="message"></p>
-            <div class="clear"></div>
-        </form>
-            <div id="invoice">
+            <p id="message">
                 <%
-                if (typeof(total) != 'undefined') {
-                %>
-                    <p id="invoiceTitle">Computer Shop's Invoice</p>
-                    <p id="item">Name</p><p id="colon">:</p><p id="price"><%= name %><p>
-                    <p id="item">Email</p><p id="colon">:</p><p id="price"><%= email %><p>
-                    <p id="item">Phone</p><p id="colon">:</p><p id="price"><%= phone %><p> 
-
-                    <p id="item">Address</p><p id="colon">:</p><p id="price"><%= address %>,<p>
-                    <p id="price" class="clear"><%= city %>,<p>
-                    <p id="price" class="clear"><%= province %>, <%= postCode %><p>
-
-                    <p id="item" class="clear"><%= computerTotal/10 %> Computer @ $10.00</p><p id="colon">:</p><p id="price">$<%= 10*computer %><p>
-
-                    <p id="item"><%= monitorTotal/20 %> Monitor @ $20.00</p><p id="colon">:</p><p id="price">$<%= 20*monitor %><p>
-
-                    <p id="item"><%= printerTotal/30 %> Printer @ $30.00</p><p id="colon">:</p><p id="price">$<%= 30*printer %><p>
-
-                    <p id="item">Shipping Charges</p><p id="colon">:</p><p id="price">$<%= shippingCharges %><p>  
-                    
-                    <p id="item">Sub Total</p><p id="colon">:</p><p id="price">$<%= subTotal %><p> 
-
-                    <p id="item">Taxes @ <%= taxPecentage %>%</p><p id="colon">:</p><p id="price">$<%= taxes.toFixed(2) %><p> 
-
-                    <p id="item">Total</p><p id="colon">:</p><p id="price">$<%= total.toFixed(2) %><p> 
-                <%
+                if(typeof(errors) != 'undefined'){
+                    for(var error of errors){
+                    %>
+                        <%= error.msg %>
+                        <br>
+                    <%
+                    }
                 }
                 %>
-            </div>
+            </p>
+            <div class="clear"></div>
+        </form>
     </main>
 
     <footer>
@@ -91,4 +59,4 @@
         </p>
     </footer>    
 </body>
-</html>
+<%- include('layouts/footer'); -%>
