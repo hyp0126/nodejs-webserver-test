@@ -1,0 +1,51 @@
+<!-- invoice.ejs
+    Assignment 4: Shop (Mongo DB)
+
+    Revision History 
+        Yi Phyo Hong, 2020.04.12: Created
+-->
+
+<%- include('layouts/header') -%>
+<body onload="onLoad();">
+    <%- include('layouts/nav') -%>
+
+    <main>
+        <div id="invoice">
+            <%
+            if (typeof(total) != 'undefined') {
+            %>
+                <p id="invoiceTitle">Computer Shop's Invoice</p>
+                <p id="item">Name</p><p id="colon">:</p><p id="price"><%= name %><p>
+                <p id="item">Email</p><p id="colon">:</p><p id="price"><%= email %><p>
+                <p id="item">Phone</p><p id="colon">:</p><p id="price"><%= phone %><p> 
+
+                <p id="item">Address</p><p id="colon">:</p><p id="price"><%= address %>,<p>
+                <p id="price" class="clear"><%= city %>,<p>
+                <p id="price" class="clear"><%= province %>, <%= postCode %><p>
+
+                <p id="item" class="clear"><%= computer %> Computer @ $10.00</p><p id="colon">:</p><p id="price">$<%= computerTotal %><p>
+
+                <p id="item"><%= monitor %> Monitor @ $20.00</p><p id="colon">:</p><p id="price">$<%= monitorTotal %><p>
+
+                <p id="item"><%= printer %> Printer @ $30.00</p><p id="colon">:</p><p id="price">$<%= printerTotal %><p>
+
+                <p id="item">Shipping Charges</p><p id="colon">:</p><p id="price">$<%= shippingCharges %><p>  
+                
+                <p id="item">Sub Total</p><p id="colon">:</p><p id="price">$<%= subTotal %><p> 
+
+                <p id="item">Taxes @ <%= taxPecentage %>%</p><p id="colon">:</p><p id="price">$<%= taxes.toFixed(2) %><p> 
+
+                <p id="item">Total</p><p id="colon">:</p><p id="price">$<%= total.toFixed(2) %><p> 
+            <%
+            }
+            %>
+        </div>
+    </main>
+
+    <footer>
+        <p class="copyright clear">
+            &copy; Computer Shop 2020
+        </p>
+    </footer>    
+</body>
+<%- include('layouts/footer'); -%>

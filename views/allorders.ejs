@@ -1,0 +1,71 @@
+<!-- allorders.ejs
+    Assignment 4: Shop (Mongo DB)
+
+    Revision History 
+        Yi Phyo Hong, 2020.04.12: Created
+-->
+
+<%- include('layouts/header') -%>
+<body>
+    <%- include('layouts/nav') -%>
+    <main class="tableDiv">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Post Code</th>
+                    <th>Province</th>
+                    <th>Computer (EA)</th>
+                    <th>Monitor (EA)</th>
+                    <th>Printer (EA)</th>
+                    <th>Computer ($)</th>
+                    <th>Monitor ($)</th>
+                    <th>Printer ($)</th>
+                    <th>Shipping ($)</th>
+                    <th>Sub Total ($)</th>
+                    <th>Tax (%)</th>
+                    <th>Taxes ($)</th>
+                    <th>Total ($)</th>                
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                for(var order of orders) {
+                %>
+                    <tr>
+                        <td><%= order.name %></td>
+                        <td><%= order.email %></td>
+                        <td><%= order.phone %></td>
+                        <td><%= order.address %></td>
+                        <td><%= order.city %></td>
+                        <td><%= order.postCode %></td>
+                        <td><%= order.province %></td>
+                        <td><%= order.computer %></td>
+                        <td><%= order.monitor %></td>
+                        <td><%= order.printer %></td>
+                        <td><%= order.computerTotal %></td>
+                        <td><%= order.monitorTotal %></td>
+                        <td><%= order.printerTotal %></td>
+                        <td><%= order.shippingCharges %></td>
+                        <td><%= order.subTotal.toFixed(2) %></td>
+                        <td><%= order.taxPecentage %></td>
+                        <td><%= order.taxes.toFixed(2) %></td>
+                        <td><%= order.total.toFixed(2) %></td> 
+                    </tr>
+                <%
+                }
+                %>
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p class="copyright clear">
+            &copy; Computer Shop 2020
+        </p>
+    </footer>    
+</body>
+<%- include('layouts/footer'); -%>
