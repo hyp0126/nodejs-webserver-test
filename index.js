@@ -44,6 +44,12 @@ mongoose.connect('mongodb://localhost:27017/computerShop', {
     useUnifiedTopology: true
 });
 
+// set up file uplaad
+const fileUpload = require('express-fileupload');
+
+// get express session
+const session = require('express-session');
+
 // set up the model for the order
 const Order = mongoose.model('Order', {
     name: String,
@@ -60,12 +66,18 @@ const Order = mongoose.model('Order', {
     monitorTotal: Number,
     printerTotal: Number,
     shippingCharges: Number,
+    image: String,
     subTotal: Number,
     taxPecentage: Number,
     taxes: Number,
     total: Number
 });
 
+// set up the model for admin
+const Admin = mongoose.model('Admin', {
+    username: String,
+    password: String
+});
 
 // set up variable to use package
 myApp = express();
@@ -78,14 +90,15 @@ myApp.use(express.static(__dirname + '/public'));
 myApp.set('view engine', 'ejs');
 myApp.use(bodyParser.urlencoded({extended: false}));
 
-// set up different routes (pages) of the website
-// All orders data
-myApp.get('/allorders', function(req, res) {
-    Order.find({}).exec(function(err, orders){
-        console.log(err);
-        res.render('allorders', {orders: orders});
-    });
-});
+// support for file handling
+myApp.use(fileUpload());
+
+// set up session
+myApp.use(session({
+    secret: 'superrandomsecret',
+    resave: false,
+    saveUninitialized: true
+}));
 
 // home page
 myApp.get('/', function(req, res){
@@ -205,6 +218,12 @@ myApp.post('/', [
         var taxes = 0;
         var total = 0;
         var i = 0;
+        var imageName = req.files.myimage.name;
+        var image = req.files.myimage;
+        var imagePath = 'public/images/'+imageName;
+        image.mv(imagePath, function(err){
+            console.log(err);
+        });
 
         //Find delivery charge
         for (i = 0; i < deliveryTime.length; i++)
@@ -279,10 +298,12 @@ myApp.post('/', [
             computer: computer,
             monitor: monitor,
             printer: printer,
+            image: imageName,
             computerTotal:computerTotal,
             monitorTotal: monitorTotal,
             printerTotal: printerTotal,
             shippingCharges: shippingCharges,
+            image: imageName,
             subTotal: subTotal,
             taxPecentage: taxPecentage,
             taxes: taxes,
@@ -299,6 +320,77 @@ myApp.post('/', [
         res.render('invoice', invoiceData);
     }
 });
+
+// set up different routes (pages) of the website
+// All orders data
+myApp.get('/allorders', function(req, res) {
+    // check if the user is logged in
+    if(req.session.userLoggedIn){
+        Order.find({}).exec(function(err, orders){
+            console.log(err);
+            res.render('allorders', {orders: orders});
+        });
+    }
+    else{ // otherwise send the user to the login page
+        res.redirect('/login');
+    }   
+});
+
+// login page
+myApp.get('/login', function(req, res){
+    res.render('login');
+});
+
+// login form post
+myApp.post('/login', function(req, res){
+    var user = req.body.username;
+    var pass = req.body.password;
+
+    Admin.findOne({username: user, password: pass}).exec(function(err, admin){
+        // log errors
+        console.log('Error: ' + err);
+        console.log('Admin: ' + admin);
+        if(admin){
+            // store username in session and set logged in true
+            req.session.username = admin.username;
+            req.session.userLoggedIn = true;
+            // redirect to the dashboard
+            res.redirect('/allorders');
+        }
+        else{
+            res.render('login', {error: 'Sorry, cannot login!'});
+        }
+    });
+});
+
+myApp.get('/logout', function(req, res){
+    req.session.username = '';
+    req.session.userLoggedIn = false;
+    res.render('login', {error: 'Seccessfully logged out'});
+});
+
+myApp.get('/delete/:oid', function(req, res){
+    // check if the user is logged in
+    if(req.session.userLoggedIn){
+        //delete
+        var orderid = req.params.oid;
+        console.log(orderid);
+        Order.findByIdAndDelete({_id: orderid}).exec(function(err, order){
+            console.log('Error: ' + err);
+            console.log('Order: ' + order);
+            if(order){
+                res.render('delete', {message: 'Successfully deleted!'});
+            }
+            else{
+                res.render('delete', {message: 'Sorry, could not delete!'});
+            }
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
+});
+
 
 // start the server and listen at aport
 myApp.listen(8080);

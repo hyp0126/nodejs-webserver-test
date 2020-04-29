@@ -10,7 +10,7 @@
     <%- include('layouts/nav') -%>
 
     <main>
-        <form onsubmit="return processForm();" action="" method="post">
+        <form onsubmit="return processForm();" action="" method="post" enctype="multipart/form-data">
             <label for="name">Name*</label>
             <input type="text" id="name" name="name">
             <label for="email">Email*</label>
@@ -35,6 +35,8 @@
             <label for="deliveryTime">Delivery Time</label>
             <select name="deliveryTime" id="deliveryTime">
             </select>
+            <label for="myimage">Image:</label>
+            <input type="file" name="myimage">
             <div class="clear"></div>
             <input type="submit" name="submit" value="Place Order">
             <p id="message">

@@ -8,6 +8,7 @@
 <%- include('layouts/header') -%>
 <body>
     <%- include('layouts/nav') -%>
+    <a href="/logout">Logout</a>
     <main class="tableDiv">
         <table>
             <thead>
@@ -26,10 +27,12 @@
                     <th>Monitor ($)</th>
                     <th>Printer ($)</th>
                     <th>Shipping ($)</th>
+                    <th>Image</th>
                     <th>Sub Total ($)</th>
                     <th>Tax (%)</th>
                     <th>Taxes ($)</th>
-                    <th>Total ($)</th>                
+                    <th>Total ($)</th>
+                    <th>Delete</th>                  
                 </tr>
             </thead>
             <tbody>
@@ -51,10 +54,12 @@
                         <td><%= order.monitorTotal %></td>
                         <td><%= order.printerTotal %></td>
                         <td><%= order.shippingCharges %></td>
+                        <td><img src="/images/<%= order.image %>"></td>
                         <td><%= order.subTotal.toFixed(2) %></td>
                         <td><%= order.taxPecentage %></td>
                         <td><%= order.taxes.toFixed(2) %></td>
-                        <td><%= order.total.toFixed(2) %></td> 
+                        <td><%= order.total.toFixed(2) %></td>
+                        <td><a href="/delete/<%= order._id %>">Delete</td> 
                     </tr>
                 <%
                 }

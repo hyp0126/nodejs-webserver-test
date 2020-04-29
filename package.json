@@ -8,7 +8,10 @@
     "ejs": "*",
     "body-parser": "*",
     "express-validator": "*",
-    "mongoose": "*"
+    "mongoose": "*",
+    "express-session": "*",
+    "express-fileupload": "*",
+    "fs-extra": "*"
   },
   "devDependencies": {},
   "scripts": {
